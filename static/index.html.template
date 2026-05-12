@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Home</title>
+  </head>
+  <body>
+    <h3>Hello world!</h3>
+    <h4><a href="https://www.${NGINX_HOST}">${NGINX_HOST}</a></h>
+    <ul>
+      <li><a href="https://gears.${NGINX_HOST}">Gears</a></li>
+      <li><a href="https://lines.${NGINX_HOST}">Lines</a></li>
+      <li><a href="https://boids.${NGINX_HOST}">Boids</a></li>
+      <li><a href="https://fourier.${NGINX_HOST}">Fourier</a></li>
+      <li><a href="https://shapes.${NGINX_HOST}">Shapes</a></li>
+    </ul>
+  </body>
+</html>

@@ -1,0 +1,76 @@
+server {
+  server_name ${NGINX_HOST} www.${NGINX_HOST};
+  
+  location / {
+    root /var/www/;
+    index index.html;
+    # First attempt to serve request as file, then
+    # as directory, then fall back to displaying a 404.
+    try_files $uri $uri/ =404;
+  }
+
+  location /gears/ {
+    alias       /var/www/gears/dist/;
+    index       index.html
+    try_files   $uri $uri/ =404;
+  }
+
+  location /lines/ {
+    alias       /var/www/lines/dist/;
+    index       index.html
+    try_files   $uri $uri/ =404;
+  }
+
+  location /boids/ {
+    alias       /var/www/boids/dist/;
+    index       index.html
+    try_files   $uri $uri/ =404;
+  }
+
+  error_page   500 502 503 504  /50x.html;
+  location = /50x.html {
+    root   /var/www/;
+  }
+
+  listen ${NGINX_PORT} default_server;
+  listen [::]:${NGINX_PORT} default_server;
+}
+
+server {
+  root /var/www/gears/dist/;
+  index index.html;
+  server_name gears.${NGINX_HOST};
+
+  location / {
+    try_files $uri $uri/ =404;
+  }
+
+  listen ${NGINX_PORT};
+  listen [::]:${NGINX_PORT};
+}
+
+server {
+  root /var/www/lines/dist/;
+  index index.html;
+  server_name lines.${NGINX_HOST};
+
+  location / {
+    try_files $uri $uri/ =404;
+  }
+
+  listen ${NGINX_PORT};
+  listen [::]:${NGINX_PORT};
+}
+
+server {
+  root /var/www/boids/dist/;
+  index index.html;
+  server_name boids.${NGINX_HOST};
+
+  location / {
+    try_files $uri $uri/ =404;
+  }
+
+  listen ${NGINX_PORT};
+  listen [::]:${NGINX_PORT};
+}
